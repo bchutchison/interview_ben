@@ -1,0 +1,37 @@
+version: '2'
+services:
+  interview_db:
+    container_name: interview_db
+    ports:
+      - "3307:3306"
+    image: mysql:5.6
+    volumes:
+      - ./base.sql:/docker-entrypoint-initdb.d/base.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: insecure
+      MYSQL_DATABASE: interview
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    links:
+      - interview_db
+    volumes:
+      - .:/app:cached
+    command:
+      - python
+      - app.py
+  frontend:
+    build:
+      context: .
+      dockerfile: DockerfileFrontend
+    ports:
+      - "8080:8080"
+    command:
+      - npm
+      - start
+    links:
+      - backend
+    volumes:
+      - .:/app:cached
+      - /app/node_modules
