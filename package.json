@@ -6,7 +6,7 @@
     "start": "./node_modules/gulp/bin/gulp.js"
   },
   "dependencies": {
-    "angular": "1.6.7",
+    "angular": "1.7.9",
     "angular-resource": "1.6.7",
     "angular-route": "1.6.7",
     "angular-ui-bootstrap": "2.5.6",
