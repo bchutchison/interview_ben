@@ -1,6 +1,6 @@
 var paths = {
     html: {
-        src: ['*.html']
+        src: ['templates/*.html']
 
     },
     js: {

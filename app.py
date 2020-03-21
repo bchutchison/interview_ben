@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask import jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import config
@@ -32,6 +32,8 @@ class Department(db.Model):
     company_id = db.Column(db.ForeignKey('companies.id', ondelete='CASCADE', onupdate='CASCADE'), nullable=False)
     company = db.relationship('Company', backref=db.backref('departments', passive_deletes=True))
 
+
+
 @app.route('/companies')
 def get_companies():
     companies = db.session.query(Company).all()
@@ -52,6 +54,21 @@ def add_company():
     new_company = Company()
     new_company.name = name
     db.session.add(new_company)
+    db.session.commit()
+    return "ASdfwf", 201
+
+# add routes for departments => add new
+@app.route('/companies/<company_id>/departments', methods=['POST'])
+# @cross_origin()
+def add_department(company_id):
+    name = request.json.get('name')
+    if name is None:
+        return 400, "Name is required"
+
+    new_department = Department()
+    new_department.name = name
+    new_department.company_id % company_id
+    db.session.add(new_department)
     db.session.commit()
     return "ASdfwf", 201
 

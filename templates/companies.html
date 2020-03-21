@@ -1,5 +1,5 @@
 <div>
-  Companies
+  <h1>{{message}}</h1>
 </div>
 <div>
 <table>
@@ -12,10 +12,11 @@
     <td>{{company.id}}</td>
     <td>{{company.name}}</td>
     <td>{{company.departments}}</td>
+    <td><button ng-click="deleteCompany/{{company.id}}">Delete</button></td>
   </tr>
 </table>
 </div>
 <div>
 New Company Name: <input ng-model="newName" type="test" name="company_name"> <button ng-click="addCompany()">Add</button>
-New Department Name: <input ng-model="newDepartment" type="test" name="department_name"> <button ng-click="addDepartment()">Add</button>
+
 </div>
