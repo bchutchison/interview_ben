@@ -87,5 +87,18 @@ def get_departments(company_id):
     })
 
 
+#Get all employees for given department ID
+@app.route('/department/<int:department_id>/employees')
+def get_employees(department_id):
+    employees = db.session.query(Employee).filter(Employee.department_id == department_id).all()
+    return jsonify({
+        'objects': [{
+            'id': employee.id,
+            'first_name': employee.name,
+            'last_name': employ.name,
+        } for employee in employees]
+    })
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
