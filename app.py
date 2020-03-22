@@ -58,9 +58,9 @@ def add_company():
     return "ASdfwf", 201
 
 # get all departments
-@app.route('/company/<company_id>/departments')
-def get_departments(companyId):
-    departments = db.session.query(Department).all()
+@app.route('/company/<int:company_id>/departments')
+def get_departments(company_id):
+    departments = db.session.query(Department).filter(Department.company_id == company_id).all()
     return jsonify({
         'objects': [{
             'id': department.id,
@@ -69,18 +69,18 @@ def get_departments(companyId):
     })
 
 # get departments by company id
-@app.route('/company/<company_id>/departments', methods=['POST'])
-def add_department(company_id):
-    name = request.json.get('name')
-    if name is None:
-        return 400, "Name is required"
-
-    new_department = Department()
-    new_department.name = name
-    new_department.company_id % company_id
-    db.session.add(new_department)
-    db.session.commit()
-    return "ASdfwf", 201
+# @app.route('/company/<company_id>/departments', methods=['POST'])
+# def add_department(company_id):
+#     name = request.json.get('name')
+#     if name is None:
+#         return 400, "Name is required"
+#
+#     new_department = Department()
+#     new_department.name = name
+#     new_department.company_id % company_id
+#     db.session.add(new_department)
+#     db.session.commit()
+#     return "ASdfwf", 201
 
 
 if __name__ == '__main__':

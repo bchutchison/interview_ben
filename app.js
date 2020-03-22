@@ -34,9 +34,9 @@ app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function d
 
     $scope.message = "Departments"
     $scope.departments = []
-    function getDepartments(){
-        var id = $routeParams.companyId
-        $http.get('http://127.0.0.1:5000/company/${id}/departments').then(function(response){
+    var id = $routeParams.companyId
+    function getDepartments(id){
+        $http.get(`http://127.0.0.1:5000/company/${id}/departments`).then(function(response){
             $scope.departments = response.data.objects
         })
     }
@@ -48,7 +48,7 @@ app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function d
     //         })
     //     }
 
-    getDepartments()
+    getDepartments(id)
 }]);
 
 
