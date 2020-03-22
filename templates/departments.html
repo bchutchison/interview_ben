@@ -9,7 +9,7 @@
     <th>Employees</th>
     <th>Remove</th>
   </tr>
-  <tr ng-repeat="employee in employees">
+  <tr ng-repeat="department in departments">
     <td>{{department.id}}</td>
     <td>{{department.name}}</td>
     <td><a ng-href="#/department/{{department.id}}/employees/">Show All</a></td>
@@ -19,5 +19,5 @@
 </div>
 <div>
   <h3>Add New Department</h3>
-Name: <input ng-model="newName" type="test" name="department_name"> <button ng-click="addDepartment()">Add</button>
+  Name: <input ng-model="newName" type="test" name="department_name"> <button ng-click="addDepartment()">Add</button>
 </div>

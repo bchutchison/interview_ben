@@ -93,7 +93,7 @@ VALUES
 	(1,'Tom', 'Smith', 1),
 	(2,'Jane', 'Londer', 1),
 	(3,'Sue', 'Baker', 2),
-	(4,'Jill', 'Miller', 2),
+	(4,'Jill', 'Miller', 2);
 
 /*!40000 ALTER TABLE `departments` ENABLE KEYS */;
 UNLOCK TABLES;

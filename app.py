@@ -72,7 +72,7 @@ def add_company():
 @app.route('/company/<int:id>', methods=['DELETE'])
 def delete_company(id):
     companies = db.session.delete(Company).all()
-
+    #not working
 
 
 #Get all departments for given company ID
@@ -85,6 +85,20 @@ def get_departments(company_id):
             'name': department.name,
         } for department in departments]
     })
+
+#Add Department to Department Table
+@app.route('/departments', methods=['POST'])
+def add_department():
+    name = request.json.get('name')
+
+    if name is None:
+        return 400, "Name is required"
+
+    new_department = Department()
+    new_department.name = name
+    db.session.add(new_department)
+    db.session.commit()
+    return "ASdfwf", 201
 
 
 #Get all employees for given department ID

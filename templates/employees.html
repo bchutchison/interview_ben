@@ -7,16 +7,17 @@
     <th>ID</th>
     <th>First Name</th>
     <th>Last Name</th>
+    <th>Remove</th>
   </tr>
-  <tr ng-repeat="company in companies">
-    <td>{{company.id}}</td>
-    <td>{{company.name}}</td>
-    <td>{{company.departments}}</td>
-    <td><button ng-click="deleteCompany(company.id)">Delete</button></td>
+  <tr ng-repeat="employee in employees">
+    <td>{{employee.id}}</td>
+    <td>{{employee.first_name}}</td>
+    <td>{{employee.last_name}}</td>
+    <td><button ng-click="deleteEmployee(employee.id)">Delete</button></td>
   </tr>
 </table>
 </div>
 <div>
-New Company Name: <input ng-model="newName" type="test" name="company_name"> <button ng-click="addCompany()">Add</button>
-
+  <h3>Add New Department</h3>
+  New Employee Name: <input ng-model="newName" type="test" name="employee_name"> <button ng-click="addEmployee()">Add</button>
 </div>

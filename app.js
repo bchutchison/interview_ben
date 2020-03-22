@@ -50,6 +50,13 @@ app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function d
         })
     }
 
+    $scope.addDepartment = function(){
+        $http.post(`http://127.0.0.1:5000/company/${id}/departments`, {name: $scope.newName}).then(function(response){
+            getDepartments()
+        })
+    }
+
+
     getDepartments(id)
 }]);
 
@@ -71,15 +78,6 @@ app.controller('employeesCtrl', ['$scope', '$http', '$routeParams', function emp
 
 function appConfig($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
-
-    // $routeProvider.when('/', {
-    //   views: {
-    //     'companies': {
-    //     templateUrl: '/templates/companies.html',
-    //     controller: 'companiesCtrl'
-    //      }
-    //     }
-    // });
 
     $routeProvider.when('/', {
         templateUrl: '/templates/companies.html',
