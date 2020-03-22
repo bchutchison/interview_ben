@@ -10,6 +10,7 @@ require('angular-resource');
 var app = angular.module('interviewApp', [
     'ngRoute'
 ]);
+
 app.controller('companiesCtrl', ['$scope', '$http', function companiesCtrl($scope, $http) {
     $scope.message = "Companies"
     $scope.companies = []
@@ -39,7 +40,6 @@ app.controller('companiesCtrl', ['$scope', '$http', function companiesCtrl($scop
 
 // Display Departments
 app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function departmentsCtrl($scope, $http, $routeParams) {
-
     $scope.message = "Departments"
     $scope.departments = []
     var id = $routeParams.companyId
@@ -55,7 +55,6 @@ app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function d
 
 
 app.controller('employeesCtrl', ['$scope', '$http', '$routeParams', function employeesCtrl($scope, $http, $routeParams) {
-
     $scope.message = "Employees"
     $scope.employees = []
     var id = $routeParams.departmentId
@@ -90,6 +89,11 @@ function appConfig($routeProvider, $locationProvider) {
     $routeProvider.when('/company/:companyId/departments', {
         templateUrl: '/templates/departments.html',
         controller: 'departmentsCtrl'
+    });
+
+    $routeProvider.when('/department/:departmentId/employees', {
+        templateUrl: '/templates/employees.html',
+        controller: 'employeesCtrl'
     });
 
 }

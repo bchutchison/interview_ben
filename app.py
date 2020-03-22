@@ -32,6 +32,15 @@ class Department(db.Model):
     company_id = db.Column(db.ForeignKey('companies.id', ondelete='CASCADE', onupdate='CASCADE'), nullable=False)
     company = db.relationship('Company', backref=db.backref('departments', passive_deletes=True))
 
+class Employee(db.Model):
+    __tablename__ = 'employees'
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(80), unique=True, nullable=False)
+    last_name = db.Column(db.String(80), unique=True, nullable=False)
+
+    department_id = db.Column(db.ForeignKey('departments.id', ondelete='CASCADE', onupdate='CASCADE'), nullable=False)
+    department = db.relationship('Department', backref=db.backref('employees', passive_deletes=True))
+
 
 
 @app.route('/companies')
