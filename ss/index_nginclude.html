@@ -1,0 +1,23 @@
+<html ng-app="interviewApp">
+<head>
+	<script src="bundle.js"></script>
+</head>
+<body>
+	<header ng-include="'templates/companies.html'">
+
+	</header>
+	<table>
+		<tr>
+			<td colspan="2" class="header">
+				<h1>COMPANY DIRECTORY</h1>
+			</td>
+		</tr>
+		<tr>
+				<td class="app-area" ng-view>
+						<div ng-include="'templates/companies.html'"></div>
+						<ng-include="'templates/companies.html'"></ng-include>
+				</td>
+		</tr>
+	</table>
+</body>
+</html>

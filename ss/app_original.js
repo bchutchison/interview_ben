@@ -30,23 +30,15 @@ app.controller('companiesCtrl', ['$scope', '$http', function companiesCtrl($scop
 }]);
 
 // Display Departments
-app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function departmentsCtrl($scope, $http, $routeParams) {
+app.controller('departmentsCtrl', ['$scope', '$http', function departmentsCtrl($scope, $http) {
 
     $scope.message = "Departments"
     $scope.departments = []
     function getDepartments(){
-        var id = $routeParams.companyId
-        $http.get('http://127.0.0.1:5000/company/${id}/departments').then(function(response){
+        $http.get('http://127.0.0.1:5000/departments').then(function(response){
             $scope.departments = response.data.objects
         })
     }
-
-    // // add new department by company id param
-    //     $scope.addDepartment = function(id){
-    //         $http.post(`http://127.0.0.1:5000/companies/${id}/departments`, {name: $scope.newDepartment}).then(function(response){
-    //             getCompanies()
-    //         })
-    //     }
 
     getDepartments()
 }]);
@@ -69,7 +61,7 @@ function appConfig($routeProvider, $locationProvider) {
         controller: 'companiesCtrl'
     });
 
-    $routeProvider.when('/company/:companyId/departments', {
+    $routeProvider.when('/department', {
         templateUrl: '/templates/departments.html',
         controller: 'departmentsCtrl'
     });

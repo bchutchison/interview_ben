@@ -57,9 +57,19 @@ def add_company():
     db.session.commit()
     return "ASdfwf", 201
 
-# add routes for departments => add new
-@app.route('/companies/<company_id>/departments', methods=['POST'])
-# @cross_origin()
+# get all departments
+@app.route('/company/<company_id>/departments')
+def get_departments(companyId):
+    departments = db.session.query(Department).all()
+    return jsonify({
+        'objects': [{
+            'id': department.id,
+            'name': department.name,
+        } for department in departments]
+    })
+
+# get departments by company id
+@app.route('/company/<company_id>/departments', methods=['POST'])
 def add_department(company_id):
     name = request.json.get('name')
     if name is None:

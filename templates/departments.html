@@ -8,15 +8,9 @@
     <th>Name</th>
     <th>Departments</th>
   </tr>
-  <tr ng-repeat="company in companies">
-    <td>{{company.id}}</td>
-    <td>{{company.name}}</td>
-    <td>{{company.departments}}</td>
-    <td><button ng-click="deleteCompany(company.id)">Delete</button></td>
+  <tr ng-repeat="department in departments">
+    <td>{{department.id}}</td>
+    <td>{{department.name}}</td>
   </tr>
 </table>
-</div>
-<div>
-New Company Name: <input ng-model="newName" type="test" name="company_name"> <button ng-click="addCompany()">Add</button>
-
 </div>
