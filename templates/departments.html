@@ -6,11 +6,14 @@
   <tr>
     <th>ID</th>
     <th>Name</th>
-    <th>Departments</th>
+    <th>Employees</th>
+    <th>Remove</th>
   </tr>
   <tr ng-repeat="department in departments">
     <td>{{department.id}}</td>
     <td>{{department.name}}</td>
+    <td><a ng-href="#/company/{{company.id}}/departments/">Show All</a></td>
+    <td><button ng-click="addCompany()">Delete</button></td>
   </tr>
 </table>
 </div>
