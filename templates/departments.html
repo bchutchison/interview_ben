@@ -9,10 +9,10 @@
     <th>Employees</th>
     <th>Remove</th>
   </tr>
-  <tr ng-repeat="department in departments">
+  <tr ng-repeat="employee in employees">
     <td>{{department.id}}</td>
     <td>{{department.name}}</td>
-    <td><a ng-href="#/company/{{company.id}}/departments/">Show All</a></td>
+    <td><a ng-href="#/department/{{department.id}}/employees/">Show All</a></td>
     <td><button ng-click="deleteDepartment()">Delete</button></td>
   </tr>
 </table>

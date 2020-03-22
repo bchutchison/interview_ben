@@ -33,9 +33,9 @@ app.controller('companiesCtrl', ['$scope', '$http', function companiesCtrl($scop
         })
     }
 
-
     getCompanies()
 }]);
+
 
 // Display Departments
 app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function departmentsCtrl($scope, $http, $routeParams) {
@@ -50,14 +50,23 @@ app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function d
         })
     }
 
-    // // add new department by company id param
-    //     $scope.addDepartment = function(id){
-    //         $http.post(`http://127.0.0.1:5000/companies/${id}/departments`, {name: $scope.newDepartment}).then(function(response){
-    //             getCompanies()
-    //         })
-    //     }
-
     getDepartments(id)
+}]);
+
+
+app.controller('employeesCtrl', ['$scope', '$http', '$routeParams', function employeesCtrl($scope, $http, $routeParams) {
+
+    $scope.message = "Employees"
+    $scope.employees = []
+    var id = $routeParams.departmentId
+
+    function getEmployees(id){
+        $http.get(`http://127.0.0.1:5000/department/${id}/employees`).then(function(response){
+            $scope.employees = response.data.objects
+        })
+    }
+
+    getEmployees(id)
 }]);
 
 
