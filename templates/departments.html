@@ -13,7 +13,11 @@
     <td>{{department.id}}</td>
     <td>{{department.name}}</td>
     <td><a ng-href="#/company/{{company.id}}/departments/">Show All</a></td>
-    <td><button ng-click="addCompany()">Delete</button></td>
+    <td><button ng-click="deleteDepartment()">Delete</button></td>
   </tr>
 </table>
+</div>
+<div>
+  <h3>Add New Department</h3>
+Name: <input ng-model="newName" type="test" name="department_name"> <button ng-click="addDepartment()">Add</button>
 </div>

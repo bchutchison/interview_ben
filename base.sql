@@ -70,6 +70,34 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table employees
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `employees`;
+
+CREATE TABLE `employees` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL DEFAULT '',
+  `last_name` varchar(255) NOT NULL DEFAULT '',
+  `department_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `department_id` (`department_id`),
+  CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `departments` DISABLE KEYS */;
+
+INSERT INTO `employees` (`id`, `first_name`, `last_name`, `department_id`)
+VALUES
+	(1,'Tom', 'Smith', 1),
+	(2,'Jane', 'Londer', 1),
+	(3,'Sue', 'Baker', 2),
+	(4,'Jill', 'Miller', 2),
+
+/*!40000 ALTER TABLE `departments` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

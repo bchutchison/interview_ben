@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS, cross_origin
 from flask import jsonify, request
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy #object relational mapper
 import config
 
 app = Flask(__name__)
@@ -18,11 +18,11 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
 db = SQLAlchemy(app)
 db.create_all()
 
+
 class Company(db.Model):
     __tablename__ = 'companies'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
-
 
 class Department(db.Model):
     __tablename__ = 'departments'
@@ -45,9 +45,11 @@ def get_companies():
         } for company in companies]
     })
 
+#Add Company to Company Table
 @app.route('/companies', methods=['POST'])
 def add_company():
     name = request.json.get('name')
+
     if name is None:
         return 400, "Name is required"
 
@@ -57,7 +59,14 @@ def add_company():
     db.session.commit()
     return "ASdfwf", 201
 
-# get all departments
+#Delete Single Company from Company table
+@app.route('/company/<int:id>', methods=['DELETE'])
+def delete_company(id):
+    companies = db.session.delete(Company).all()
+
+
+
+#Get all departments for given company ID
 @app.route('/company/<int:company_id>/departments')
 def get_departments(company_id):
     departments = db.session.query(Department).filter(Department.company_id == company_id).all()
@@ -67,20 +76,6 @@ def get_departments(company_id):
             'name': department.name,
         } for department in departments]
     })
-
-# get departments by company id
-# @app.route('/company/<company_id>/departments', methods=['POST'])
-# def add_department(company_id):
-#     name = request.json.get('name')
-#     if name is None:
-#         return 400, "Name is required"
-#
-#     new_department = Department()
-#     new_department.name = name
-#     new_department.company_id % company_id
-#     db.session.add(new_department)
-#     db.session.commit()
-#     return "ASdfwf", 201
 
 
 if __name__ == '__main__':
