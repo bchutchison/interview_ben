@@ -18,6 +18,10 @@
 </table>
 </div>
 <div>
-  <h3>Add New Department</h3>
-  New Employee Name: <input ng-model="newName" type="test" name="employee_name"> <button ng-click="addEmployee()">Add</button>
+  <h3>Add New Employee</h3>
+  <form class="" action="index.html" method="post">
+    <label>First Name : <input ng-model="newFirstName" type="test" name="employee_first_name"></label><br>
+    <label>Last Name : <input ng-model="newLastName" type="test" name="employee_last_name"></label><br>
+    <input type="submit" ng-click="addEmployee(department_id)" value="Save">
+  </form>
 </div>

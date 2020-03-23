@@ -27,7 +27,7 @@ app.controller('companiesCtrl', ['$scope', '$http', function companiesCtrl($scop
         })
     }
 
-    $scope.deleteCompany = function(id){
+    $scope.deleteCompany = function(){
         $http.delete(`http://127.0.0.1:5000/company/${id}`).then(function(response){
           var index = $scope.companies.indexOf(company);
           $scope.companies.splice(index,1);
@@ -56,7 +56,6 @@ app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function d
         })
     }
 
-
     getDepartments(companyId)
 }]);
 
@@ -69,6 +68,12 @@ app.controller('employeesCtrl', ['$scope', '$http', '$routeParams', function emp
     function getEmployees(departmentId){
         $http.get(`http://127.0.0.1:5000/department/${departmentId}/employees`).then(function(response){
             $scope.employees = response.data.objects
+        })
+    }
+
+    $scope.addEmployee = function(){
+        $http.post(`http://127.0.0.1:5000/department/${departmentId}/employees`, {first_name: $scope.firstName, last_name: $scope.lastName, company_id: companyId}).then(function(response){
+            getEmployees(departmentId)
         })
     }
 
