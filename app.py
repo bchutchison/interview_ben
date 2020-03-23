@@ -87,8 +87,8 @@ def get_departments(company_id):
     })
 
 #Add Department to Department Table
-@app.route('/departments', methods=['POST'])
-def add_department():
+@app.route('/company/<int:company_id>/departments', methods=['POST'])
+def add_department(company_id):
     name = request.json.get('name')
 
     if name is None:
@@ -96,6 +96,7 @@ def add_department():
 
     new_department = Department()
     new_department.name = name
+    new_department.company_id = company_id
     db.session.add(new_department)
     db.session.commit()
     return "ASdfwf", 201
@@ -108,8 +109,8 @@ def get_employees(department_id):
     return jsonify({
         'objects': [{
             'id': employee.id,
-            'first_name': employee.name,
-            'last_name': employ.name,
+            'first_name': employee.first_name,
+            'last_name': employee.last_name,
         } for employee in employees]
     })
 

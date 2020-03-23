@@ -42,37 +42,37 @@ app.controller('companiesCtrl', ['$scope', '$http', function companiesCtrl($scop
 app.controller('departmentsCtrl', ['$scope', '$http', '$routeParams', function departmentsCtrl($scope, $http, $routeParams) {
     $scope.message = "Departments"
     $scope.departments = []
-    var id = $routeParams.companyId
+    var companyId = $routeParams.companyId
 
-    function getDepartments(id){
-        $http.get(`http://127.0.0.1:5000/company/${id}/departments`).then(function(response){
+    function getDepartments(companyId){
+        $http.get(`http://127.0.0.1:5000/company/${companyId}/departments`).then(function(response){
             $scope.departments = response.data.objects
         })
     }
 
     $scope.addDepartment = function(){
-        $http.post(`http://127.0.0.1:5000/company/${id}/departments`, {name: $scope.newName}).then(function(response){
-            getDepartments()
+        $http.post(`http://127.0.0.1:5000/company/${companyId}/departments`, {name: $scope.newName, company_id: companyId}).then(function(response){
+            getDepartments(companyId)
         })
     }
 
 
-    getDepartments(id)
+    getDepartments(companyId)
 }]);
 
 
 app.controller('employeesCtrl', ['$scope', '$http', '$routeParams', function employeesCtrl($scope, $http, $routeParams) {
     $scope.message = "Employees"
     $scope.employees = []
-    var id = $routeParams.departmentId
+    var departmentId = $routeParams.departmentId
 
-    function getEmployees(id){
-        $http.get(`http://127.0.0.1:5000/department/${id}/employees`).then(function(response){
+    function getEmployees(departmentId){
+        $http.get(`http://127.0.0.1:5000/department/${departmentId}/employees`).then(function(response){
             $scope.employees = response.data.objects
         })
     }
 
-    getEmployees(id)
+    getEmployees(departmentId)
 }]);
 
 
