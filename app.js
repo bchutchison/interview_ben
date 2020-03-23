@@ -72,7 +72,7 @@ app.controller('employeesCtrl', ['$scope', '$http', '$routeParams', function emp
     }
 
     $scope.addEmployee = function(){
-        $http.post(`http://127.0.0.1:5000/department/${departmentId}/employees`, {first_name: $scope.firstName, last_name: $scope.lastName, company_id: companyId}).then(function(response){
+        $http.post(`http://127.0.0.1:5000/department/${departmentId}/employees`, {first_name: $scope.newFirstName, last_name: $scope.newLastName, department_id: departmentId}).then(function(response){
             getEmployees(departmentId)
         })
     }

@@ -115,5 +115,21 @@ def get_employees(department_id):
     })
 
 
+#Add Employee to Employee Table
+@app.route('/department/<int:department_id>/employees', methods=['POST'])
+def add_employee(department_id):
+    first_name = request.json.get('first_name')
+    last_name = request.json.get('last_name')
+
+    new_employee = Employee()
+    new_employee.first_name = first_name
+    new_employee.last_name = last_name
+    new_employee.department_id = department_id
+    db.session.add(new_employee)
+    db.session.commit()
+    return "ASdfwf", 201
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
