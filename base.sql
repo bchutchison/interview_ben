@@ -37,7 +37,10 @@ LOCK TABLES `companies` WRITE;
 INSERT INTO `companies` (`id`, `name`)
 VALUES
 	(1,'Insight'),
-	(2,'RailCompany');
+	(2,'RailCompany'),
+	(3,'Company A'),
+	(4,'Company B'),
+	(5,'Company C');
 
 /*!40000 ALTER TABLE `companies` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -64,7 +67,12 @@ INSERT INTO `departments` (`id`, `name`, `company_id`)
 VALUES
 	(1,'Main',1),
 	(2,'Cost Estimators',2),
-	(3,'Engineers',2);
+	(3,'Engineers A',2),
+	(4,'Engineers B',3),
+	(5,'Engineers C',4),
+	(6,'Engineers D',5),
+	(7,'Engineers E',5),
+	(8,'Engineers F',5);
 
 /*!40000 ALTER TABLE `departments` ENABLE KEYS */;
 UNLOCK TABLES;
